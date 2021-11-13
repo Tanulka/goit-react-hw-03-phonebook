@@ -1,0 +1,17 @@
+.btn {
+  display: block;
+  margin-top: 30px;
+  border: none;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: rgb(243, 172, 225);
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
