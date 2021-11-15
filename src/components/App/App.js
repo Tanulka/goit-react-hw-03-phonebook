@@ -14,7 +14,6 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    filteredContacts: [],
   };
 
   checkUser = contact => {
@@ -39,21 +38,20 @@ class App extends Component {
   };
 
   handleChange = e => {
-    this.setState({ filter: e.target.value }, () => this.filter());
+    this.setState({ filter: e.target.value });
   };
 
-  filter = () => {
+  filter() {
     const { filter, contacts } = this.state;
-    const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
-    this.setState({ filteredContacts });
-  };
+    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+  }
 
   deleteContact = id => {
     this.setState(prevState => ({ contacts: prevState.contacts.filter(contact => contact.id !== id) }));
   };
 
   render() {
-    const { filter, filteredContacts, contacts } = this.state;
+    const { filter, contacts } = this.state;
 
     return (
       <div className={s.container}>
@@ -62,7 +60,7 @@ class App extends Component {
         <h2>Contacts</h2>
         <Filter handleChange={this.handleChange} value={filter} />
 
-        <Contacts contacts={filter ? filteredContacts : contacts} deleteContact={this.deleteContact} />
+        <Contacts contacts={filter ? this.filter() : contacts} deleteContact={this.deleteContact} />
       </div>
     );
   }

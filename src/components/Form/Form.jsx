@@ -3,14 +3,10 @@ import { Component } from 'react';
 import s from './Form.module.css';
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      number: '',
-    };
-  }
+  state = {
+    name: '',
+    number: '',
+  };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
